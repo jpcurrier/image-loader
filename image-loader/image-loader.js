@@ -30,11 +30,11 @@
         .always( function(){
           count++;
           if( count === load.length ){
-						if( settings.success && !failed.length )
+						if( typeof settings.success === 'function' && !failed.length )
               settings.success();
-            if( settings.fail && failed.length )
+            if( typeof settings.fail === 'function' && failed.length )
               settings.fail( failed );
-            if( settings.complete )
+            if( typeof settings.complete === 'function' )
               settings.complete();
           }
         } );
