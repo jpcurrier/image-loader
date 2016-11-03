@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Image Loader</title>
+  <style>
+    img{
+      display: block;
+      width: 300px;
+      height: auto;
+    }
+    .load-bg{
+      width: 300px;
+      height: 300px;
+      margin: 0;
+      background-position: center;
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <p class="status">loading&hellip;</p>
+    <p class="report">failed:</p>
+  </div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/2012_Transit_of_Venus_from_SF.jpg">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Blue_Marble_Western_Hemisphere.jpg">
+  <figure class="load-bg" style="background-image: url( https://upload.wikimedia.org/wikipedia/commons/3/30/Mercury_in_color_-_Prockter07_centered.jpg );"></figure>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="image-loader/image-loader.js"></script>
+  <script>
+    $( 'img, .load-bg' ).imageLoader({
+      complete: completeCallback,
+      success: successCallback,
+      fail: failCallback
+    });
+
+    // callback functions
+    function successCallback(){
+      $( 'p.report' ).append( ' none' );
+    }
+    function failCallback( failed ){
+      for( var i in failed ){
+        if( i == 0 )
+          $( 'p.report' ).append( ' ' + failed[ i ] );
+        else
+          $( 'p.report' ).append( ', ' + failed[ i ] );
+      }
+    }
+    function completeCallback(){
+      $( 'p.status' ).append( ' done.' );
+    }
+  </script>
+</body>
+
+</html>
