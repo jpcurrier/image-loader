@@ -25,16 +25,16 @@ $( 'img, .load-bg' ).imageLoader({
   success: successCallback,
   fail: failCallback
 });
+function completeCallback(){
+  alert( 'all files downloaded or failed' );
+}
 function successCallback(){
-  alert( 'all files downloaded' );
+  alert( 'all files downloaded successfully' );
 }
 function failCallback( failed ){
   for( var i in failed ){
     alert( 'failed to download: ' + failed[ i ] );
   }
-}
-function completeCallback(){
-  alert( 'all files downloaded or failed' );
 }
 ```
 
