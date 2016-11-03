@@ -30,10 +30,10 @@
         .always( function(){
           count++;
           if( count === load.length ){
-            if( failed.length )
-              settings.fail( failed );
-            else
+						if( settings.success && !failed.length )
               settings.success();
+            if( settings.fail && failed.length )
+              settings.fail( failed );
             if( settings.complete )
               settings.complete();
           }
